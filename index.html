@@ -30,7 +30,7 @@
       <meta property="og:url" content="https://Boobsi.baby/" />
       <meta
          property="og:image"
-         content="https://boobie.baby/wp-content/uploads/2024/04/EMB_Header_WebPage_Logo.gif"
+         content="./wp-content/uploads/2024/04/EMB_Header_WebPage_Logo.gif"
       />
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content="$BOOBSI" />
@@ -40,7 +40,7 @@
       />
       <meta
          name="twitter:image"
-         content="https://boobie.baby/wp-content/uploads/2024/04/EMB_Header_WebPage_Logo.gif"
+         content="./wp-content/uploads/2024/04/EMB_Header_WebPage_Logo.gif"
       />
      
       <!-- / The SEO Framework by Sybre Waaijer | 45.98ms meta | 24.24ms boot -->
@@ -1463,7 +1463,7 @@
       />
       <meta
          name="msapplication-TileImage"
-         content="https://boobie.baby/wp-content/uploads/2024/08/cropped-output-onlinegiftools-5-3-270x270.gif"
+         content="./wp-content/uploads/2024/08/cropped-output-onlinegiftools-5-3-270x270.gif"
       />
       <style id="wp-custom-css">
          /* GeneratePress Site CSS start */
@@ -1609,7 +1609,7 @@
 						id="menu-item-9"
 						class="menu-item menu-item-type-custom menu-item-object-custom menu-item-9"
 					 >
-						<a target="_blank" href="https://raydium.io/swap/?inputMint=sol&outputMint=Q5xgwpwh9h25qhbJY6f75VGLktChzutwzRfbpMspump">Buy</a>
+						<a target="_blank" href="https://raydium.io/swap/?inputMint=sol&outputMint=XXXXXXXX">Buy</a>
 					 </li>
                         <li
                            id="menu-item-84"
@@ -1941,49 +1941,52 @@
 		  chatHistoryDiv.scrollTop = chatHistoryDiv.scrollHeight;
 	   }
  
-	   async function sendMessage() {
-		  if (sendButton.disabled) return;
-		  if (!userInput.value) return;
- 
-		  const userMessage = `${userInput.value}`;
-		  addMessageToChat(userMessage, true);
-		  userInput.value = "";
- 
-		  const typingIndicator = document.createElement("div");
-		  typingIndicator.className = "bot-message";
-		  typingIndicator.innerHTML = `<div class="bot-avatar"></div> <span>Bot is typing...</span>`;
-		  chatHistoryDiv.appendChild(typingIndicator);
-		  chatHistoryDiv.scrollTop = chatHistoryDiv.scrollHeight;
- 
-		  sendButton.disabled = true;
- 
-		  const selectedBot = localStorage.getItem("botType") || "bot1";
-		 const backendUrl = 'https://moldy-back.onrender.com/chat'; //'http://localhost:4000/chat';
- 
-		  const botChatHistory = loadChatHistory().slice(-10);
- 
-		  try {
-			 const response = await fetch(backendUrl, {
-				method: "POST",
-				headers: { "Content-Type": "application/json" },
-				body: JSON.stringify({
-				   messages: botChatHistory,
-				   selectedPrompt: selectedBot
-				})
-			 });
- 
-			 if (!response.ok) throw new Error(`${response.status} ${response.statusText}`);
-			 const data = await response.json();
- 
-			 typingIndicator.remove();
-			 addMessageToChat(`${data.reply}`, false);
-		  } catch (error) {
-			 typingIndicator.remove();
-			 addMessageToChat(`Error: ${error.message || "Error sending request"}`, false);
-		  } finally {
-			 sendButton.disabled = false;
-		  }
-	   }
+	  async function sendMessage() {
+	if (sendButton.disabled) return;
+	if (!userInput.value) return;
+
+	const userMessage = `${userInput.value}`;
+	addMessageToChat(userMessage, true);
+	userInput.value = "";
+
+	const typingIndicator = document.createElement("div");
+	typingIndicator.className = "bot-message";
+	typingIndicator.innerHTML = `<div class="bot-avatar"></div> <span>Bot is typing...</span>`;
+	chatHistoryDiv.appendChild(typingIndicator);
+	chatHistoryDiv.scrollTop = chatHistoryDiv.scrollHeight;
+
+	sendButton.disabled = true;
+
+	const selectedBot = localStorage.getItem("botType") || "bot1";
+	const backendUrl = `https://moldy-back.onrender.com/chat/${selectedBot}`;
+	const botChatHistory = loadChatHistory().slice(-10).map(msg => {
+  const div = document.createElement('div');
+  div.innerHTML = msg;
+  return div.textContent || '';
+});
+
+	try {
+		const response = await fetch(backendUrl, {
+			method: "POST",
+			headers: { "Content-Type": "application/json" },
+			body: JSON.stringify({
+				messages: botChatHistory
+			})
+		});
+
+		if (!response.ok) throw new Error(`${response.status} ${response.statusText}`);
+		const data = await response.json();
+
+		typingIndicator.remove();
+		addMessageToChat(`${data.reply}`, false);
+	} catch (error) {
+		typingIndicator.remove();
+		addMessageToChat(`Error: ${error.message || "Error sending request"}`, false);
+	} finally {
+		sendButton.disabled = false;
+	}
+}
+
  
 	   sendButton.addEventListener("click", sendMessage);
 	   userInput.addEventListener("keypress", (e) => {
@@ -2025,7 +2028,7 @@
                               style="font-size: 23px"
                            >
                               CA (token address): <br /><strong
-                                 >Q5xgwpwh9h25qhbJY6f75VGLktChzutwzRfbpMspump</strong
+                                 >XXXXXXXX</strong
                               >
                            </p>
 
@@ -2121,7 +2124,7 @@
                               >
                                  <figure class="wp-block-image size-full">
                                     <a
-                                       href="https://birdeye.so/token/Q5xgwpwh9h25qhbJY6f75VGLktChzutwzRfbpMspump"
+                                       href="https://birdeye.so/token/XXXXXXXX"
                                        ><img
                                           decoding="async"
                                           width="400"
@@ -2139,7 +2142,7 @@
 
                                  <figure class="wp-block-image size-full">
                                     <a
-                                       href="https://jup.ag/swap/SOL-Q5xgwpwh9h25qhbJY6f75VGLktChzutwzRfbpMspump"
+                                       href="https://jup.ag/swap/SOL-XXXXXXXX"
                                        ><img
                                           decoding="async"
                                           width="400"
@@ -2176,7 +2179,7 @@
 
                                  <figure class="wp-block-image size-full">
                                     <a
-                                       href="https://dexscreener.com/solana/Q5xgwpwh9h25qhbJY6f75VGLktChzutwzRfbpMspump"
+                                       href="https://dexscreener.com/solana/XXXXXXXX"
                                        ><img
                                           loading="lazy"
                                           decoding="async"
@@ -2214,7 +2217,7 @@
 
                                  <figure class="wp-block-image size-full">
                                     <a
-                                       href="https://raydium.io/swap/?inputMint=sol&outputMint=Q5xgwpwh9h25qhbJY6f75VGLktChzutwzRfbpMspump"
+                                       href="https://raydium.io/swap/?inputMint=sol&outputMint=XXXXXXXX"
                                        ><img
                                           loading="lazy"
                                           decoding="async"
@@ -2924,7 +2927,7 @@
                                     <p>
                                        <a href="#tokenomics-scroll">Tokenomics</a
                                        ><br />
-									   <a target="_blank" href="https://raydium.io/swap/?inputMint=sol&outputMint=Q5xgwpwh9h25qhbJY6f75VGLktChzutwzRfbpMspump">Buy</a>
+									   <a target="_blank" href="https://raydium.io/swap/?inputMint=sol&outputMint=XXXXXXXX">Buy</a>
                                        <br />
 									   <a  href="#team-scroll">About Us (Soon)</a>
                                        <br />
