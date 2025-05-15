@@ -1771,17 +1771,12 @@
                                        color: #fff;
                                     "
                                  />
+                                 <style>
+
+                                 </style>
                                  <button
                                     id="send-button"
-                                    style="
-                                       margin-left: 10px;
-                                       padding: 10px;
-                                       border: none;
-                                       border-radius: 5px;
-                                       background-color: #958d00;
-                                       color: #fff;
-                                       cursor: pointer;
-                                    "
+                                     class="sendBtn"
                                  >
                                     Send
                                  </button>
@@ -1789,6 +1784,7 @@
                               
                            </div>
                            <style>
+
                               #chat-container {
                                  border: 1px solid #157e05;
                                  border-radius: 10px;
@@ -1864,13 +1860,20 @@
 }
 							  
                               #send-button {
-                                 margin-left: 10px;
+                                 /* margin-left: 10px; */
+                                 margin-top: 20px;
                                  padding: 10px;
                                  border: none;
                                  border-radius: 5px;
                                  background-color: #157e05;
                                  color: #fff;
                                  cursor: pointer;
+                              }
+
+                              @media screen and (min-width: 768px) {
+                              #send-button {
+                                 margin-left: 10px;
+                              } 
                               }
                               #send-button:hover {
                                  background-color: #157e05;
@@ -3338,12 +3341,19 @@ tabs.forEach(tab => {
   });
 	  </script>
 	  <style>
-		.tabs {
-			display: flex;
-			gap: 20px;
-			cursor: pointer;
-		  }
-		  
+
+      		 @media screen and (max-width: 768px) {
+			.tabs{
+            			display: flex;
+                     cursor: pointer;
+                     flex-direction: column;
+                  }
+               }
+         .tabs {
+         gap: 20px;
+         /* flex-direction: row; */
+            }
+            
 		  .tab {
 			padding: 10px;
 			position: relative;
